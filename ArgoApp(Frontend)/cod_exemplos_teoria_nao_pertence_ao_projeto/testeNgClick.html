@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html ng-app="argo">
+<head>
+    <title></title>
+</head>
+<body>
+    
+    <div ng-controller="MainCtrl">
+        <button ng-click="editarClicado('Recado da view!')">
+            Clique-me
+        </button>
+    </div>
+    
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("argo", []);
+        app.controller("MainCtrl", function($scope) {
+
+            $scope.editarClicado = function(attr) {
+                console.log(attr);
+            }
+
+        });
+    </script>
+</body>
+</html>

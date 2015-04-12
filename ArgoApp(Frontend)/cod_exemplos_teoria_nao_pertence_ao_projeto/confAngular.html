@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html ng-app ="argo">
+<head>
+    <title>Config Angular</title>
+</head>
+    <body ng-controller="MainController">
+        
+        <ul>
+            <li ng-repeat-start="func in funcionarios">
+                <h4>{{func.id}}</h4>
+                <h4>{{func.nome}}</h4>
+                <h5>{{func.email}}</h5>
+                <h5>{{func.telefone}}</h5>
+            </li>
+            <hr ng-repeat-end/>
+        </ul>
+
+        <script src="Scripts/angular.min.js"></script>
+        <script src="Scripts/app.js"></script>
+    </body>
+</html>

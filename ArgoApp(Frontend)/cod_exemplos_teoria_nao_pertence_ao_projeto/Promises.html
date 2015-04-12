@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html ng-app="argo">
+<head>
+    <title>Testando Promises</title>
+</head>
+<body ng-controller="MainController">
+
+    <h1>{{dados}}</h1>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("argo", []);
+        app.controller("MainController", function ($scope, $q, $timeout) {
+            $scope.dados = "Dados antigos";
+            var handler = $q.defer();
+            handler.promise
+                .then(function (valor) {
+                    $scope.dados = valor;
+                });
+
+            $timeout(function () {
+                handler.resolve("Dados novos!");
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

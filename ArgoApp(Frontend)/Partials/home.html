@@ -1,0 +1,190 @@
+﻿<!--Logo e título principal da página-->
+<!--Seção de Notícias e Memorandos-->
+<div class="row">
+    <div class="container">
+        <hr />
+        <div class="col-sm-6 hidden-xs">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Notícias
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Introdução ao AngularJS e Bootstrap;
+                        Montagem da Aplicação Cliente de Exemplo;
+                        Views, Controllers, Principais diretivas incluídas.
+                        Filtros
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Memorandos
+                </div>
+                <div class="panel-body">
+                   
+                    <p>
+                        Introdução ao AngularJS e Bootstrap;
+                        Montagem da Aplicação Cliente de Exemplo;
+                        Views, Controllers, Principais diretivas incluídas.
+                        Filtros
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Seção de Funcionários-->
+<div class="row">
+    <div class="container">
+        <hr />
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" ng-show="mostrarAlertSucesso">{{mensagemDeRetorno}}</div>         
+            <div class="alert alert-danger" role="alert" ng-show="mostrarAlertErro">{{mensagemDeRetorno}}</div>
+            <button class="btn btn-default" data-toggle="modal" data-target="#modalCriacao" style="margin-bottom: 10px;">Criar novo funcionário</button>
+            <div class="pull-right">
+                Busca:
+                <input type="text" ng-model="funcSearch.Nome" style="color:black;" />
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Rol de Funcionários
+                    
+
+
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Nome</td>
+                                    <td>Email</td>
+                                    <td>Telefone</td>
+                                    <td>Editar</td>
+                                    <td>Excluir</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="func in funcionarios | filter:funcSearch track by func.Id">
+                                    <td>{{func.Id}}</td>
+                                    <td>{{func.Nome}}</td>
+                                    <td>{{func.Email}}</td>
+                                    <td>{{func.Telefone}}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEdicao" ng-click="editarClicado(func, $index)">Editar</button>
+                                        <!--<a href="#" data-toggle="modal" data-target="#modalEdicao">
+                    <img src="img/editar_icone.png" width="20" />
+                </a>-->
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRemocao" ng-click="excluirClicado(func, $index)">Excluir</button>
+                                        <!--<a href="#" data-toggle="modal" data-target="#modalRemocao">
+                    <img src="img/excluir_icone.png" width="20" />
+                </a>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal de Confirmação da Exclusão-->
+<div class="modal fade" id="modalRemocao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirma remoção do registro?</h4>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja remover o registro abaixo? <br />
+                <span style="font-weight: bold; font-size: 1.2em;">Id: {{elementoSelecionado.Id}}</span> <br />
+                <span style="font-weight: bold; font-size: 1.2em;">Nome: {{elementoSelecionado.Nome}}</span> <br />
+                <span>Email: {{elementoSelecionado.Email}}</span> <br />
+                <span>Telefone: {{elementoSelecionado.Telefone}}</span> <br />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removerSelecionado(elementoSelecionado)">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Edição de usuário -->
+<div class="modal fade" id="modalEdicao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edição do Registro</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Id</label>
+                        <input type="number" class="form-control" ng-model="elementoSelecionado.Id" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nome</label>
+                        <input type="text" class="form-control" ng-model="elementoSelecionado.Nome" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input type="text" class="form-control" ng-model="elementoSelecionado.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefone</label>
+                        <input type="text" class="form-control" ng-model="elementoSelecionado.Telefone" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editarSelecionado(elementoSelecionado)">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>   
+<div class="modal fade" id="modalCriacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Criação de novo Funcionário</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                  
+                    <div class="form-group">
+                        <label class="control-label">Nome</label>
+                        <input type="text" class="form-control" ng-model="novoFuncionario.Nome" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input type="text" class="form-control" ng-model="novoFuncionario.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefone</label>
+                        <input type="text" class="form-control" ng-model="novoFuncionario.Telefone" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="salvarNovoFuncionario(novoFuncionario)">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

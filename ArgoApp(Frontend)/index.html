@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html ng-app="argo">
+<head>
+    <title>Controle de Funcionários</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="row">
+        <div class="container">
+            <header class="pull-left">
+                <h2>Minha Empresa</h2>
+                <h3>Controle Integrado de Funcionários</h3>
+            </header>
+
+            <!--Navegação principal da página-->
+            <nav class="pull-right">
+                Navegar para: <input type="text" ng-model="irPara"  style="margin: 10px 20px;"/>
+                <ul class="nav nav-pills" style="margin-top: 20px;">
+                    <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                    <li ui-sref-active="active"><a ui-sref="contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div ui-view></div>
+    
+    <!--Rodapé da página-->
+    <footer class="row" style="margin-top: 30px;">
+        <div class="container text-center" style="border-top: 2px solid #337ab7;">
+            <ul class="list-inline">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="contato">Contato</a></li>
+            </ul>
+            <p>Todos os Direitos Reservados</p>
+        </div>
+
+    </footer>
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/app.js"></script>
+</body>
+</html>

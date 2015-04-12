@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="argo">
+<head>
+    <title></title>
+</head>
+<body ng-controller="MainController">
+    
+    <funcionario nome="Antonio Amaral dos Santos"></funcionario>
+    <funcionario nome="João Antonio"></funcionario>
+    <funcionario nome="Emerson Fittipaldi"></funcionario>
+    <funcionario nome="Silmara Cristina"></funcionario>
+    <funcionario nome="Gisele Bundchen"></funcionario>
+    
+
+
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("argo", []);
+        app.controller("MainController", ["$scope", "$http", function($scope, $http) {
+            
+        }]);
+
+        app.directive("funcionario", function() {
+            return {
+                restrict: "E",
+                template: "<div style='font-size:1.4em;color:blue;'>{{nome}}</div>",
+                scope: {},
+                link: function(scope, element, attrs) {
+                    scope.nome = attrs.nome;
+                }
+            }   
+        });
+
+
+    </script>
+</body>
+</html>

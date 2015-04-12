@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app="argo">
+<head>
+    <title>Trabalhando com Routing</title>
+</head>
+<body>
+    <nav>
+        <h2>Menu</h2>
+        <ul>
+            <li><a ui-sref="afazeres">Afazeres</a></li>
+            <li><a ui-sref="ideias">Ideias</a></li>
+        </ul>
+    </nav>
+
+    <div ui-view></div>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script>
+        var app = angular.module("argo", ["ui.router"]);
+        app.controller("ListasController", function ($scope) {
+
+        });
+
+        app.config(function ($stateProvider, $urlRouterProvider) {
+
+            $urlRouterProvider.otherwise("/afazeres");
+            $stateProvider.
+                state("afazeres", {
+                    url: "/afazeres",
+                    templateUrl: "template/template1.html"
+                    
+                })
+                .state("ideias", {
+                    url: "/ideias",
+                    templateUrl: "template/template2.html"
+                });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html ng-app="services">
+<head>
+    <title>Usando Services</title>
+</head>
+<body ng-controller="ServiceController">
+    <h2>Capturando dados de uma conta Github</h2>
+    <h4>Exemplo com $http</h4>
+
+    <input type="text" ng-model="ghUser" />
+    <button ng-click="getGithubDataByUser(ghUser)">Obter Dados do Github</button>
+    <br /><br />
+    <img ng-src="{{dados.avatar_url}}" width="250" />
+    <h3>Nome de usuário: {{dados.name}}</h3>
+    <p>Repositórios públicos: {{dados.public_repos}}</p>
+    <p>Criado em: {{dados.created_at}}</p>
+    <p>Atualizado em: {{dados.updated_at}}</p>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("services", []);
+        app.controller("ServiceController", function ($scope, GitHub) {
+            $scope.getGithubDataByUser = function (ghUser) {
+                GitHub.getGithubData(ghUser).then(function (data) {
+                    $scope.dados = data;
+                }, function (error) {
+                    console.log("Erro ao recuperar dados do Servidor!");
+                });
+            }
+        });
+
+        app.factory("GitHub", function ($q, $http) {
+            var dados = {};
+            function getGitHubData(user) {
+                var def = $q.defer();
+                $http.get("https://api.github.com/users/" + user)
+                    .success(function (data) {
+                        dados = data;
+                        def.resolve(data);
+                    })
+                    .error(function () {
+                        def.reject("Erro ao obter");
+                    });
+                return def.promise;
+            }
+            return {
+                dados: dados,
+                getGithubData: getGitHubData
+            }
+        });
+    </script>
+</body>
+</html>

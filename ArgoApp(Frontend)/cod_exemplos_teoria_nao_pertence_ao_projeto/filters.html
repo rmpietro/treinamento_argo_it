@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="filters">
+<head>
+    <title>Usando filtros em AngularJS</title>
+</head>
+<body ng-controller="FiltersController">
+    String: <input type="text" ng-model="descString" />
+    <br />
+    <h3>{{descString | delimitador:50}}</h3>
+    <!--<h3>{{descString | uppercase}}</h3>-->
+
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("filters", []);
+        app.controller("FiltersController", function ($scope) {
+
+        });
+
+        app.filter("delimitador", function () {
+            return function (texto, comprimento) {
+                if (!comprimento) {
+                    comprimento = 10;
+                }
+                if (!texto) {
+                    return "";
+                }
+                if (texto.length <= comprimento) {
+                    return texto;
+                } else {
+                    return texto.substring(0, comprimento) + "...";
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

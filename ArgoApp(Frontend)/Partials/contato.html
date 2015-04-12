@@ -1,0 +1,38 @@
+﻿<!--Seção do Formulário-->
+<div class="row">
+    <div class="container">
+        <hr />
+        <div class="col-md-offset-2 col-md-8">
+            <div class="alert alert-success" role="alert" ng-show="mostrarAlertSucesso">{{mensagemDeRetorno}}</div>
+            <div class="alert alert-danger" role="alert" ng-show="mostrarAlertErro">{{mensagemDeRetorno}}</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Contato
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Nome:</label>
+                            <input type="text" class="form-control" ng-model="solicitacaoDeContato.Nome" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email:</label>
+                            <input type="text" class="form-control" ng-model="solicitacaoDeContato.Email" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Departamento:</label>
+                            <input type="text" class="form-control" ng-model="solicitacaoDeContato.Departamento" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Solicitação:</label>
+                            <textarea class="form-control" ng-model="solicitacaoDeContato.Solicitacao"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-default pull-right" ng-click="salvarContato(solicitacaoDeContato)">Enviar solicitação</button>
+        </div>
+
+    </div>
+</div>
